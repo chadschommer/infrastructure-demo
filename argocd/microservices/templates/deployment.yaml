@@ -53,7 +53,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: KubernetesLivenessProbe
-              path: /healthcheck
+              path: /
               port: 80
               scheme: HTTP
             initialDelaySeconds: 30
@@ -65,7 +65,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: KubernetesLivenessProbe
-              path: /healthcheck/ready
+              path: /
               port: 80
               scheme: HTTP
             initialDelaySeconds: 5

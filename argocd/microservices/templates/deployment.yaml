@@ -30,6 +30,8 @@ spec:
       labels:
         app: {{ .Values.app }}-{{ .Values.env }}
     spec:
+      imagePullSecrets:
+        - name: docker
       containers:
         - name: {{ .Values.app }}-{{ .Values.env }}
           lifecycle:

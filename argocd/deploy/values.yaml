@@ -1,0 +1,6 @@
+spec:
+  source:
+    targetRevision: master
+    repo: 'https://github.com/schommer21/infrastructure-demo.git'
+    path: argocd/microservices
+    ingressPath: deploy/ingress

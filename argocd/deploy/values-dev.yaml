@@ -1,0 +1,7 @@
+env: dev
+project: dev
+namespace: dev
+
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'

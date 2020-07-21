@@ -13,6 +13,6 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       valueFiles:
-        - values-{{ .Values.env }}.yaml
+        - values-dev.yaml
         - values.yaml
   syncPolicy: {}

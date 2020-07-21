@@ -14,5 +14,5 @@ spec:
     helm:
       valueFiles:
         - values-{{ .Values.env }}.yaml
-        - values-springbootsample.yaml
+        - values.yaml
   syncPolicy: {}

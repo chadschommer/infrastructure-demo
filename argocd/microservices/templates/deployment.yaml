@@ -1,0 +1,77 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: {{ .Values.app }}-{{ .Values.env }}
+  namespace: {{ .Values.service.namespace }}
+spec:
+  revisionHistoryLimit: 5
+  strategy:
+    blueGreen:
+      # activeService specifies the service to update with the new template hash at time of promotion.
+      # This field is mandatory for the blueGreen update strategy.
+      activeService: {{ .Values.app }}-{{ .Values.env }}
+      # previewService specifies the service to update with the new template hash before promotion.
+      # This allows the preview stack to be reachable without serving production traffic.
+      # This field is optional.
+      previewService: {{ .Values.app }}-{{ .Values.env }}-preview
+      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
+      # immediately before the promotion. If omitted, the default behavior is to promote the new
+      # stack as soon as the ReplicaSet are completely ready/available.
+      # Rollouts can be resumed using: `kubectl argo rollouts resume ROLLOUT`
+
+      # This IF will never evaluate false right now because of the parent IF. Eventually
+      # the parent IF will include additional environments and this will have more utility.
+      autoPromotionEnabled: true
+  selector:
+    matchLabels:
+      app: {{ .Values.app }}-{{ .Values.env }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app }}-{{ .Values.env }}
+    spec:
+      containers:
+        - name: {{ .Values.app }}-{{ .Values.env }}
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "/bin/sleep", "20" ]
+          resources:
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          image: {{ .Values.image.dockerImage }}:{{ .Values.devtag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              httpHeaders:
+                - name: Host
+                  value: KubernetesLivenessProbe
+              path: /
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 15
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              httpHeaders:
+                - name: Host
+                  value: KubernetesLivenessProbe
+              path: /healthcheck/ready
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 15
+            successThreshold: 1
+          env:
+            - name: APP_NAME
+              value: {{ .Values.app }}
+          ports:
+            - containerPort: 80

@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  dockerRepo: schommer21/springboot-sample
+  tag: latest
+  pullPolicy: Always

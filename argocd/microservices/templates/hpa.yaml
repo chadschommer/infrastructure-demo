@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.app }}-{{ .Values.env }}
+  namespace: {{ .Values.service.namespace }}
+spec:
+  scaleTargetRef:
+    kind: Rollout
+    apiVersion: argoproj.io/v1alpha1
+    name: {{ .Values.app }}-{{ .Values.env }}
+  minReplicas: {{ .Values.hpa.replicas.min }}
+  maxReplicas: {{ .Values.hpa.replicas.max }}
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.hpa.metrics.memory }}
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.hpa.metrics.cpu }}

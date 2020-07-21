@@ -1,0 +1,13 @@
+# https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs
+# https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/#using-dynamic-provisioning
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: io1
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: io1
+  iopsPerGB: "10"
+  fsType: ext4
+  encrypted: "true"
+allowVolumeExpansion: true

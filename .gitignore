@@ -1,0 +1,3 @@
+.terraform
+plan.out
+kubeconfig_dev

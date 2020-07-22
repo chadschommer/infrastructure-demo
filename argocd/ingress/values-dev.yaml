@@ -5,8 +5,8 @@ subDomain:
   main: occipitalgames.com
 
 alb:
-  ssl-policy: ELBSecurityPolicy-TLS-1-2-2017-01
+  sslpolicy: ELBSecurityPolicy-TLS-1-2-2017-01
   external:
-    certificate-arn: arn:aws:acm:us-east-1:872802577141:certificate/df0ff84f-f5f2-4d18-a269-f62b6d9b7dcd
-    security-groups: sg-037968b4c8fd01722
+    certificatearn: arn:aws:acm:us-east-1:872802577141:certificate/df0ff84f-f5f2-4d18-a269-f62b6d9b7dcd
+    securitygroups: sg-037968b4c8fd01722
     subnets: subnet-0636b9d04b8962f8b, subnet-0ce037cd257ce334a, subnet-0f2ae782053508c35

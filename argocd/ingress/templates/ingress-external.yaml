@@ -9,11 +9,11 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /timestamp
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/security-groups: "{{ .Values.alb.external.security-groups }}"
-    alb.ingress.kubernetes.io/ssl-policy: {{ .Values.alb.ssl-policy }}
+    alb.ingress.kubernetes.io/security-groups: "{{ .Values.alb.external.securitygroups }}"
+    alb.ingress.kubernetes.io/ssl-policy: {{ .Values.alb.sslpolicy }}
     alb.ingress.kubernetes.io/subnets: {{ .Values.alb.external.subnets }}
     alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=10
-    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.alb.external.certificate-arn }}
+    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.alb.external.certificatearn }}
     alb.ingress.kubernetes.io/target-type: ip
     kubernetes.io/ingress.class: alb
   name: "eks-{{ .Values.host }}"

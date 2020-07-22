@@ -34,10 +34,10 @@ spec:
         - name: docker
       containers:
         - name: {{ .Values.app }}-{{ .Values.env }}
-          lifecycle:
-            preStop:
-              exec:
-                command: [ "/bin/sleep", "20" ]
+          # lifecycle:
+          #   preStop:
+          #     exec:
+          #       command: [ "/bin/sleep", "20" ]
           resources:
             limits:
               memory: {{ .Values.resources.limits.memory }}

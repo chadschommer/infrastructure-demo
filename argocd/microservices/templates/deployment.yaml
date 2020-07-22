@@ -54,7 +54,7 @@ spec:
                 - name: Host
                   value: KubernetesLivenessProbe
               path: /
-              port: 80
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
@@ -66,11 +66,11 @@ spec:
                 - name: Host
                   value: KubernetesLivenessProbe
               path: /
-              port: 80
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 5
             periodSeconds: 20
             timeoutSeconds: 15
             successThreshold: 1
           ports:
-            - containerPort: 80
+            - containerPort: 8080

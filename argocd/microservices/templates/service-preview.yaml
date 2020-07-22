@@ -9,7 +9,7 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 80
+    port: 8080
     name: {{ .Values.app }}-{{ .Values.env }}
   selector:
     app: {{ .Values.app }}-{{ .Values.env }}

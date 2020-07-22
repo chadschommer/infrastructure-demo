@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /timestamp
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/security-groups: {{ .Values.alb.external.security-groups }}
+    alb.ingress.kubernetes.io/security-groups: "{{ .Values.alb.external.security-groups }}"
     alb.ingress.kubernetes.io/ssl-policy: {{ .Values.alb.ssl-policy }}
     alb.ingress.kubernetes.io/subnets: {{ .Values.alb.external.subnets }}
     alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=10

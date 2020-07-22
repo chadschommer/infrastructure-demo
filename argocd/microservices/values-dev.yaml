@@ -6,11 +6,11 @@ service:
 
 resources:
   limits:
-    memory: 50Mi
+    memory: 200Mi
     cpu: .2
   requests:
     cpu: .2
-    memory: 50Mi
+    memory: 200Mi
 hpa:
   replicas:
     min: 1

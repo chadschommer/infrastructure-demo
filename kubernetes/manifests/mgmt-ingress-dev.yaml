@@ -27,9 +27,3 @@ spec:
         - backend:
             serviceName: jenkins
             servicePort: 8080
-    - host: argocd.{{ domain }}.com
-      http:
-        paths:
-          - backend:
-              serviceName: argocd-server
-              servicePort: 80

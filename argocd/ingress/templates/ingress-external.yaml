@@ -31,4 +31,4 @@ spec:
         paths:
         - backend:
             serviceName: springbootsample-{{ .Values.env }}
-            servicePort: 8080
+            servicePort: 80

@@ -7,9 +7,9 @@ service:
 resources:
   limits:
     memory: 50Mi
-    cpu: 1
+    cpu: .2
   requests:
-    cpu: 1
+    cpu: .2
     memory: 50Mi
 hpa:
   replicas:

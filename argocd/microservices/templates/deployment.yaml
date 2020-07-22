@@ -53,7 +53,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: KubernetesLivenessProbe
-              path: /
+              path: /timestamp
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
@@ -65,7 +65,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: KubernetesLivenessProbe
-              path: /
+              path: /timestamp
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 5

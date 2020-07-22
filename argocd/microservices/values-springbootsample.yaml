@@ -1,4 +1,4 @@
 app: springbootsample
 imagename: springbootsample
 
-devtag: "${env.BUILD_NUMBER}"
+devtag: 46

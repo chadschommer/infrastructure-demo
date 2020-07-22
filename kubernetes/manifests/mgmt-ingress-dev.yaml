@@ -5,13 +5,13 @@ metadata:
   namespace: mgmt
   annotations:
     kubernetes.io/ingress.class: "alb"
-    alb.ingress.kubernetes.io/certificate-arn: {{ certificate }}
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:872802577141:certificate/df0ff84f-f5f2-4d18-a269-f62b6d9b7dcd
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: {{ subnets }}
+    alb.ingress.kubernetes.io/subnets: subnet-0636b9d04b8962f8b, subnet-0ce037cd257ce334a, subnet-0f2ae782053508c35
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
-    alb.ingress.kubernetes.io/security-groups: {{ 80_and_443_security_group }}
+    alb.ingress.kubernetes.io/security-groups: sg-037968b4c8fd01722
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01
 spec:
   rules:
@@ -21,7 +21,7 @@ spec:
            backend:
               serviceName: ssl-redirect
               servicePort: use-annotation
-    - host: jenkins.{{ domain }}.com
+    - host: jenkins.occipitalgames.com
       http:
         paths:
         - backend:
